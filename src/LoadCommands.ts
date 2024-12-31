@@ -5,7 +5,7 @@ import {
   RESTPostAPIChatInputApplicationCommandsJSONBody,
   Routes,
 } from "discord.js";
-import ClientWithCommands, { CommandType } from "./Client";
+import ClientWithCommands, { CommandType } from "./ClientWithCommands.js";
 const rest = new REST().setToken(process.env.TOKEN!);
 
 const __dirname = import.meta.dirname;

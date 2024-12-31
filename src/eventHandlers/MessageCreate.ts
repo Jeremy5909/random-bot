@@ -9,6 +9,7 @@ const replies = ["I care!", "nobody cares", "🤓", "🐺"];
 function randomFromArray(array: any[]) {
   return array[Math.floor(Math.random() * array.length)];
 }
+
 export default function HandleMessageCreate(client: Client) {
   client.on(Events.MessageCreate, async (message) => {
     if (Math.random() <= reactChance) {

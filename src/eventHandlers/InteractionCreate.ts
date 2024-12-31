@@ -1,5 +1,5 @@
 import { Events } from "discord.js";
-import ClientWithCommands from "../Client";
+import ClientWithCommands from "../ClientWithCommands.js";
 
 export default function HandleInteractionCreate(client: ClientWithCommands) {
   client.on(Events.InteractionCreate, async (interaction) => {
