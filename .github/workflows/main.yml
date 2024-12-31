@@ -12,4 +12,10 @@ jobs:
           username: ec2-user
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          script: |
+            cd random-bot
+            pm2 stop index
+            git pull
+            npm i
+            npm run build
+            pm2 start dist/index.js
