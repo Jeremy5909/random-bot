@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2022",         // Target ECMAScript version
-    "module": "nodenext",       // Module system for Node.js
-    "moduleResolution": "NodeNext",
+    "target": "ESNext",         // Target ECMAScript version
+    "module": "esnext",       // Module system for Node.js
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "strict": true,             // Enable strict type checking
     "skipLibCheck": true,        // Skip type checks for declaration files

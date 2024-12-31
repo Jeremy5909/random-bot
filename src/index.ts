@@ -1,14 +1,11 @@
-import {
-  Events,
-  GatewayIntentBits,
-  MessageFlags,
-  TextChannel,
-} from "discord.js";
+import { GatewayIntentBits } from "discord.js";
 import "dotenv/config.js";
-import NewClient from "./Client.js";
-import "./RegisterCommands.js";
+import ClientWithCommands from "./ClientWithCommands.js";
+import HandleMessageCreate from "./eventHandlers/MessageCreate.js";
+import HandleInteractionCreate from "./eventHandlers/InteractionCreate.js";
+import HandleClientReady from "./eventHandlers/ClientReady.js";
 
-const client = new NewClient({
+const client = new ClientWithCommands({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
@@ -16,22 +13,9 @@ const client = new NewClient({
   ],
 });
 
-client.on(Events.ClientReady, (readyClient) => {
-  console.log(`Logged in as ${readyClient.user.tag}`);
-});
+HandleClientReady(client);
 
-client.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-  if (interaction.commandName === "say") {
-    const message = interaction.options.getString("message")!;
-
-    await (interaction.channel as TextChannel).send(message);
-
-    await interaction.reply({
-      content: "Sent!",
-      flags: MessageFlags.Ephemeral,
-    });
-  }
-});
+HandleMessageCreate(client);
+HandleInteractionCreate(client);
 
 client.login(process.env.TOKEN);
